@@ -29,7 +29,12 @@ function Home() {
 						</Link>
 					</Column>
 
-					<img width={'100%'} src={heroImgPath} alt='DIO Hero Image' />
+					<img
+						style={{ maxWidth: '64%', placeSelf: 'center' }}
+						width={'100%'}
+						src={heroImgPath}
+						alt='DIO Hero Image'
+					/>
 				</Row>
 			</Main>
 		</>

@@ -22,7 +22,7 @@ export const Title = styled.h2`
 	}
 
 	@media screen and (width < 1024px) {
-		font-size: 2.8rem;
+		font-size: 2.4rem;
 	}
 `;
 
@@ -38,7 +38,8 @@ export const Column = styled.div`
 	display: flex;
 	flex-flow: column;
 	gap: 2.4rem;
-	align-items: flex-start;
+	align-items: center;
+	justify-content: center;
 
 	p {
 		max-width: 92rem;
@@ -49,9 +50,11 @@ export const Column = styled.div`
 export const Row = styled.div`
 	display: flex;
 	flex-flow: row;
-	align-items: center;
+	justify-content: space-between;
+	gap: 12rem;
 
 	@media screen and (width <= 1024px) {
 		flex-flow: column;
+		gap: 4.8rem;
 	}
 `;
