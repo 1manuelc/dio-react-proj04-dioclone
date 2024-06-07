@@ -4,7 +4,7 @@ import { StyledHeader, LeftArea, RightArea } from './styles';
 import Button from '../Button/';
 import SearchBar from '../SearchBar/';
 import DioLogo from '../DioLogo/';
-import ProfilePhoto from '../ProfilePhoto/';
+import ProfilePicture from '../ProfilePicture/';
 import { LuChevronDown } from 'react-icons/lu';
 
 const Header = ({ isAuthenticated = false, profilePhotoUrl }) => {
@@ -29,7 +29,7 @@ const Header = ({ isAuthenticated = false, profilePhotoUrl }) => {
 			<RightArea>
 				{isAuthenticated ? (
 					<>
-						<ProfilePhoto src={profilePhotoUrl} size={36} />
+						<ProfilePicture photoUrl={profilePhotoUrl} size={36} />
 						<Button text={<LuChevronDown color='#fff' size='24' />} />
 					</>
 				) : (
