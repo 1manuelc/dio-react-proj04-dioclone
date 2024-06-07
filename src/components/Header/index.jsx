@@ -7,7 +7,7 @@ import DioLogo from '../DioLogo/';
 import ProfilePhoto from '../ProfilePhoto/';
 import { LuChevronDown } from 'react-icons/lu';
 
-const Header = ({ isAuthenticated = false }) => {
+const Header = ({ isAuthenticated = false, profilePhotoUrl }) => {
 	return (
 		<StyledHeader>
 			<LeftArea>
@@ -29,10 +29,7 @@ const Header = ({ isAuthenticated = false }) => {
 			<RightArea>
 				{isAuthenticated ? (
 					<>
-						<ProfilePhoto
-							src='https://avatars.githubusercontent.com/u/110443154?v=4'
-							size={36}
-						/>
+						<ProfilePhoto src={profilePhotoUrl} size={36} />
 						<Button text={<LuChevronDown color='#fff' size='24' />} />
 					</>
 				) : (
@@ -55,6 +52,7 @@ const Header = ({ isAuthenticated = false }) => {
 
 Header.propTypes = {
 	isAuthenticated: PropTypes.bool,
+	profilePhotoUrl: PropTypes.string,
 };
 
 export default Header;
