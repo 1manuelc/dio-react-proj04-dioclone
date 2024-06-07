@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-	padding: 4.8rem 16rem;
+	padding: 4.8rem 12rem;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 
 	@media screen and (width < 1024px) {
@@ -45,13 +45,20 @@ export const Column = styled.div`
 		max-width: 92rem;
 		min-width: 24rem;
 	}
+
+	h3 {
+		color: #fff;
+		font-size: 2.8rem;
+		font-weight: 700;
+	}
 `;
 
 export const Row = styled.div`
+	width: 100%;
 	display: flex;
 	flex-flow: row;
-	justify-content: space-between;
-	gap: 12rem;
+	justify-content: space-around;
+	gap: 8rem;
 
 	@media screen and (width <= 1024px) {
 		flex-flow: column;
