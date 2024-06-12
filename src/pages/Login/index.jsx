@@ -24,6 +24,7 @@ const Login = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
+		mode: 'onTouched',
 	});
 
 	const onSubmit = (data) => {
@@ -91,7 +92,7 @@ const Login = () => {
 								type='submit'
 							/>
 						</StyledForm>
-						
+
 						<Actions>
 							<Link to='/' className='yellow'>
 								Esqueci minha senha
