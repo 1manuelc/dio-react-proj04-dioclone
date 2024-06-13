@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from '../../schema.jsx';
-import { validateLogin } from '../../utils/checkInDatabase.jsx';
+import { validateLogin } from '../../services/databaseHandler.jsx';
 
 const Login = () => {
 	const [loginError, setLoginError] = useState('');
@@ -27,9 +27,9 @@ const Login = () => {
 		mode: 'onTouched',
 	});
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		const { email, password } = data;
-		const { canLogin, errorMessage } = validateLogin(email, password);
+		const { canLogin, errorMessage } = await validateLogin(email, password);
 
 		if (!canLogin) {
 			setLoginError(errorMessage);
