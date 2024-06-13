@@ -12,7 +12,10 @@ import { useNavigate } from 'react-router-dom';
 import schema from '../../schema.jsx';
 
 import { useState } from 'react';
-import { emailExistsOnDatabase } from '../../utils/checkInDatabase.jsx';
+import {
+	createUser,
+	emailExistsOnDatabase,
+} from '../../services/databaseHandler.jsx';
 
 const Signup = () => {
 	const [signupError, setSignupError] = useState('');
@@ -26,15 +29,18 @@ const Signup = () => {
 		resolver: yupResolver(schema),
 	});
 
-	const onSubmit = (data) => {
-		const { email } = data;
+	const onSubmit = async (data) => {
+		const { name, email, password } = data;
+		const emailAlreadyUsed = await emailExistsOnDatabase(email);
 
-		if (!emailExistsOnDatabase(email)) navigate('/userhome');
-		else {
+		if (emailAlreadyUsed) {
 			setSignupError('Email já cadastrado');
 			setTimeout(() => {
 				setSignupError('');
 			}, 4000);
+		} else {
+			createUser({ name, email, password });
+			navigate('/userhome');
 		}
 	};
 
