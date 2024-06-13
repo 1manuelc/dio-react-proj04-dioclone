@@ -28,7 +28,7 @@ const ProfilePicture = ({ photoUrl, profileUrl, size = 24 }) => {
 };
 
 ProfilePicture.propTypes = {
-	photoUrl: PropTypes.string.isRequired,
+	photoUrl: PropTypes.string,
 	profileUrl: PropTypes.string,
 	size: PropTypes.number,
 };
