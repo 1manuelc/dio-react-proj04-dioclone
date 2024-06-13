@@ -20,6 +20,8 @@ O projeto foi feito em `React` e construído utilizando `Vite`, utilizando como 
 * `json-server`: para emular um servidor local através de um arquivo json com os dados.
 * `vercel`: para utilizar funcionalidades serverless e redirecionar chamadas à API em ambiente de produção.
 
+obs: este projeto foi prototipado usando Figma, caso queira implementá-lo com base no protótipo para fins de estudo [acesse o protótipo clicando aqui](https://www.figma.com/design/yhW9LAMJkf5aPepJL1RyMt/DIO-Clone-Remake?node-id=0-1&t=ILKif7X86Qv0r87w-1).
+
 ## Executando a aplicação localmente
 Para executar a aplicação do projeto, você precisa:
 
