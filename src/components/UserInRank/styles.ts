@@ -36,7 +36,11 @@ export const ProgressBar = styled.div`
 	background: #fff;
 `;
 
-export const ActualProgress = styled.div`
+interface IActualProgress {
+	percentual: number;
+}
+
+export const ActualProgress = styled.div<IActualProgress>`
 	${({ percentual }) =>
 		percentual >= 0 && percentual <= 100
 			? css`

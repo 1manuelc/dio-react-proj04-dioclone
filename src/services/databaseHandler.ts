@@ -1,6 +1,8 @@
 import { api } from './api';
 
-export const emailExistsOnDatabase = async (email) => {
+export const emailExistsOnDatabase = async (
+	email: string
+): Promise<boolean | undefined> => {
 	try {
 		const response = await api.get(`/users?email=${email}`);
 		return response.data.length === 1;
@@ -9,7 +11,15 @@ export const emailExistsOnDatabase = async (email) => {
 	}
 };
 
-export const validateLogin = async (email, password) => {
+interface IValidateLogin {
+	canLogin: boolean;
+	errorMessage: string;
+}
+
+export const validateLogin = async (
+	email: string,
+	password: string
+): Promise<IValidateLogin> => {
 	try {
 		const response = await api.get(
 			`/users?email=${email}&password=${password}`
@@ -34,9 +44,19 @@ export const validateLogin = async (email, password) => {
 		}
 	} catch (error) {
 		console.log(error);
+		return {
+			canLogin: false,
+			errorMessage: 'Um erro inesperado ocorreu durante a validação do login',
+		};
 	}
 };
 
-export const createUser = async ({ name, email, password }) => {
+interface IUser {
+	name?: string;
+	email?: string;
+	password?: string;
+}
+
+export const createUser = async ({ name, email, password }: IUser) => {
 	await api.post('/users', { name, email, password });
 };

@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const StyledButton = styled.button`
+interface IButtonStyled {
+	variant?: string;
+	spacing: number;
+}
+
+export const StyledButton = styled.button<IButtonStyled>`
 	${({ spacing }) =>
 		spacing === 100
 			? css`

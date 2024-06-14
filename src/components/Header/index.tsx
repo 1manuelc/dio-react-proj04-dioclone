@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { StyledHeader, LeftArea, RightArea } from './styles';
-import Button from '../Button/';
-import SearchBar from '../SearchBar/';
-import DioLogo from '../DioLogo/';
-import ProfilePicture from '../ProfilePicture/';
+import Button from '../Button';
+import SearchBar from '../SearchBar';
+import DioLogo from '../DioLogo';
+import ProfilePicture from '../ProfilePicture';
 import { LuChevronDown } from 'react-icons/lu';
 
-const Header = ({ isAuthenticated = false, profilePhotoUrl }) => {
+interface IHeader {
+	isAuthenticated?: boolean;
+	profilePhotoUrl?: string;
+}
+
+const Header = ({ isAuthenticated = false, profilePhotoUrl }: IHeader) => {
 	return (
 		<StyledHeader>
 			<LeftArea>
@@ -30,7 +35,7 @@ const Header = ({ isAuthenticated = false, profilePhotoUrl }) => {
 				{isAuthenticated ? (
 					<>
 						<ProfilePicture photoUrl={profilePhotoUrl} size={36} />
-						<Button text={<LuChevronDown color='#fff' size='24' />} />
+						<LuChevronDown color='#fff' size='24' />
 					</>
 				) : (
 					<>
@@ -48,11 +53,6 @@ const Header = ({ isAuthenticated = false, profilePhotoUrl }) => {
 			</RightArea>
 		</StyledHeader>
 	);
-};
-
-Header.propTypes = {
-	isAuthenticated: PropTypes.bool,
-	profilePhotoUrl: PropTypes.string,
 };
 
 export default Header;

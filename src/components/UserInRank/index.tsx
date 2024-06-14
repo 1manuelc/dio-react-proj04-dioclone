@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
 	UserContainer,
 	UserInfos,
@@ -7,7 +6,19 @@ import {
 } from './styles';
 import ProfilePicture from '../ProfilePicture';
 
-const UserInRank = ({ name, profileUrl, profilePhotoUrl, progressPercent }) => {
+interface IUserInRank {
+	name: string;
+	profileUrl?: string;
+	profilePhotoUrl?: string;
+	progressPercent: number;
+}
+
+const UserInRank = ({
+	name,
+	profileUrl,
+	profilePhotoUrl,
+	progressPercent,
+}: IUserInRank) => {
 	return (
 		<UserContainer>
 			<ProfilePicture
@@ -26,13 +37,6 @@ const UserInRank = ({ name, profileUrl, profilePhotoUrl, progressPercent }) => {
 			</UserInfos>
 		</UserContainer>
 	);
-};
-
-UserInRank.propTypes = {
-	name: PropTypes.string.isRequired,
-	profileUrl: PropTypes.string,
-	profilePhotoUrl: PropTypes.string,
-	progressPercent: PropTypes.number,
 };
 
 export default UserInRank;

@@ -1,4 +1,4 @@
-import * as jsonServer from 'json-server'
+import * as jsonServer from 'json-server';
 
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
@@ -8,5 +8,5 @@ server.use(middlewares);
 server.use(router);
 
 export default (req, res) => {
-	server.handle(req, res);
+	server.listen(req, res);
 };

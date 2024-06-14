@@ -1,21 +1,21 @@
 import { LuLock, LuMail, LuUser } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button/index.jsx';
-import Header from '../../components/Header';
-import InputText from '../../components/InputText/index.jsx';
-import { Column, Main, Row, Subtitle, Title } from '../Home/styles.jsx';
-import { Actions, StyledForm } from '../Login/styles.jsx';
+import Button from '../../components/Button/index';
+import Header from '../../components/Header/index';
+import InputText from '../../components/InputText/index';
+import { Column, Main, Row, Subtitle, Title } from '../Home/styles';
+import { Actions, StyledForm } from '../Login/styles';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import schema from '../../schema.jsx';
+import schema from '../../schema';
 
 import { useState } from 'react';
 import {
 	createUser,
 	emailExistsOnDatabase,
-} from '../../services/databaseHandler.jsx';
+} from '../../services/databaseHandler';
 
 const Signup = () => {
 	const [signupError, setSignupError] = useState('');
@@ -29,7 +29,13 @@ const Signup = () => {
 		resolver: yupResolver(schema),
 	});
 
-	const onSubmit = async (data) => {
+	interface IData {
+		name?: string;
+		email: string;
+		password?: string;
+	}
+
+	const onSubmit = async (data: IData) => {
 		const { name, email, password } = data;
 		const emailAlreadyUsed = await emailExistsOnDatabase(email);
 

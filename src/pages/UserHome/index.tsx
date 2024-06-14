@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import { Main, Column, Row } from '../Home/styles';
 import { RankingColumn } from './styles';
 import UserInRank from '../../components/UserInRank';
+import { IMockPosts, IMockRanking } from './types';
 
 const loggedUser = {
 	name: 'Manuel Carlos',
@@ -10,7 +11,7 @@ const loggedUser = {
 	profilePhotoUrl: 'https://avatars.githubusercontent.com/u/110443154?v=4',
 };
 
-const mockPosts = {
+const mockPosts: IMockPosts = {
 	postsArray: [
 		{
 			cover:
@@ -26,7 +27,7 @@ const mockPosts = {
 					'https://avatars.githubusercontent.com/u/110443154?v=4',
 			},
 			tags: ['#React', '#StyledComponents', '#ReactRouterDom', '#ReactIcons'],
-			likeCount: 16,
+			likesCount: 16,
 		},
 		{
 			cover:
@@ -40,12 +41,12 @@ const mockPosts = {
 				profilePhotoUrl: '',
 			},
 			tags: ['#Figma', '#AutoLayout', '#Responsividade', '#LucideIcons'],
-			likeCount: 64,
+			likesCount: 64,
 		},
 	],
 };
 
-const mockRanking = {
+const mockRanking: IMockRanking = {
 	rankingArray: [
 		{
 			name: 'Manuel Carlos',

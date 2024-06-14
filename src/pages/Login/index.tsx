@@ -1,18 +1,18 @@
 import { LuLock, LuMail } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button/index.jsx';
-import Header from '../../components/Header';
-import InputText from '../../components/InputText/index.jsx';
+import Button from '../../components/Button/index.js';
+import Header from '../../components/Header/index.js';
+import InputText from '../../components/InputText/index.js';
 
-import { Column, Main, Row, Subtitle, Title } from '../Home/styles.jsx';
-import { Actions, StyledForm } from './styles.jsx';
+import { Column, Main, Row, Subtitle, Title } from '../Home/styles.js';
+import { Actions, StyledForm } from './styles.js';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../../schema.jsx';
-import { validateLogin } from '../../services/databaseHandler.jsx';
+import schema from '../../schema.js';
+import { validateLogin } from '../../services/databaseHandler.js';
 
 const Login = () => {
 	const [loginError, setLoginError] = useState('');
@@ -27,14 +27,23 @@ const Login = () => {
 		mode: 'onTouched',
 	});
 
-	const onSubmit = async (data) => {
-		const { email, password } = data;
-		const { canLogin, errorMessage } = await validateLogin(email, password);
+	interface IData {
+		email: string;
+		password: string;
+	}
 
-		if (!canLogin) {
-			setLoginError(errorMessage);
-			setTimeout(() => setLoginError(''), 4000);
-		} else navigate('/userhome');
+	const onSubmit = async (data: IData) => {
+		try {
+			const { email, password } = data;
+			const { canLogin, errorMessage } = await validateLogin(email, password);
+
+			if (!canLogin) {
+				setLoginError(errorMessage);
+				setTimeout(() => setLoginError(''), 4000);
+			} else navigate('/userhome');
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (

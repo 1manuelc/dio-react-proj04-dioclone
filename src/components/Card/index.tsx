@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import {
 	CardContainer,
 	CardCover,
@@ -16,17 +14,27 @@ import { LuThumbsUp } from 'react-icons/lu';
 
 import ProfilePicture from '../ProfilePicture';
 
-/* cardInfos object structure:
-    cover: string,
-    title: string,
-    description: string,
-    postedAt: string,
-    author: object { name, profileUrl, profilePhotoUrl },
-    tags: array,
-    likeCount: number,
-*/
+interface IAuthor {
+	name: string;
+	profileUrl?: string;
+	profilePhotoUrl?: string;
+}
 
-const Card = ({ cardInfos }) => {
+interface IPost {
+	cover?: string;
+	title: string;
+	description?: string;
+	postedAt: string;
+	author: IAuthor;
+	tags?: Array<string>;
+	likesCount?: number;
+}
+
+interface ICard {
+	cardInfos: IPost;
+}
+
+const Card = ({ cardInfos }: ICard) => {
 	return (
 		<CardContainer>
 			<CardCover src={cardInfos.cover} />
@@ -44,11 +52,11 @@ const Card = ({ cardInfos }) => {
 				</PostAuthor>
 				<PostHeader>
 					<h4>{cardInfos.title}</h4>
-					<p>{cardInfos.description.substr(0, 247).concat('...')}</p>
+					<p>{cardInfos.description?.substr(0, 247).concat('...')}</p>
 				</PostHeader>
 				<PostExtraInfos>
 					<PostTags>
-						{cardInfos.tags.map((tag) => (
+						{cardInfos.tags?.map((tag) => (
 							<a key={tag} href={`${tag}`}>
 								{tag}
 							</a>
@@ -56,16 +64,12 @@ const Card = ({ cardInfos }) => {
 					</PostTags>
 					<PostReactions>
 						<LuThumbsUp size={20} />
-						<p>{cardInfos.likeCount}</p>
+						<p>{cardInfos.likesCount}</p>
 					</PostReactions>
 				</PostExtraInfos>
 			</CardInfos>
 		</CardContainer>
 	);
-};
-
-Card.propTypes = {
-	cardInfos: PropTypes.object.isRequired,
 };
 
 export default Card;

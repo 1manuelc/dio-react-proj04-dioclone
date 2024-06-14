@@ -1,9 +1,10 @@
-import './styles.jsx';
-import Header from '../../components/Header/index.jsx';
-import Button from '../../components/Button/index.jsx';
-import { Main, Title, Subtitle, Column, Row } from './styles.jsx';
-import heroImgPath from '../../assets/heroimg.png';
+import './styles';
+import Header from '../../components/Header/index';
+import Button from '../../components/Button/index';
+import { Main, Title, Subtitle, Column, Row } from './styles';
 import { Link } from 'react-router-dom';
+
+import heroImgPath from '../../assets/heroimg.png';
 
 function Home() {
 	return (
