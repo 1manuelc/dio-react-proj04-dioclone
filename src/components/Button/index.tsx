@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { StyledButton } from './styles';
 
 interface IButton {

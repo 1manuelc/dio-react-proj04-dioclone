@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
-interface IButtonStyled {
+// importando atributos de um botão comum em HTML para o componente com extends
+interface IButtonStyled extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: string;
 	spacing: number;
 }
