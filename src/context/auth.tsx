@@ -89,6 +89,8 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 		}
 	};
 
+	// TODO: implement handleSignOut function
+
 	return (
 		<AuthContext.Provider value={{ user, handleLogin, handleSignup }}>
 			{children}

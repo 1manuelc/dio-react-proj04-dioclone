@@ -6,12 +6,7 @@ import {
 } from './styles';
 import ProfilePicture from '../ProfilePicture';
 
-interface IUserInRank {
-	name: string;
-	profileUrl?: string;
-	profilePhotoUrl?: string;
-	progressPercent: number;
-}
+import { IUserInRank } from '../../types/types';
 
 const UserInRank = ({
 	name,

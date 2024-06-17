@@ -1,3 +1,5 @@
+import { IconType } from 'react-icons';
+
 export interface IUser {
 	id?: number;
 	name: string;
@@ -56,4 +58,36 @@ export interface IPostAuthor {
 
 export interface IPostList {
 	postsArray: Array<IPost>;
+}
+
+export interface ICard {
+	cardInfos: IPost;
+}
+
+export interface IButton {
+	variant?: string;
+	text: string;
+	type?: string;
+	itFillWidth?: boolean;
+	onClickFn?: () => void;
+}
+
+export interface IDioLogo {
+	height?: number;
+}
+
+export interface IInputText {
+	Icon: IconType;
+	size: number;
+	color: string;
+	placeholder: string;
+	type: string;
+	register: Function;
+	name: string;
+}
+
+export interface IProfilePicture {
+	photoUrl?: string;
+	profileUrl?: string;
+	size?: number;
 }

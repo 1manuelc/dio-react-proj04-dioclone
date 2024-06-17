@@ -13,6 +13,9 @@ interface IHeader {
 }
 
 const Header = ({ isAuthenticated = false, profilePhotoUrl }: IHeader) => {
+	// TODO: Pass user through context API to show authenticated header version or not
+	// TODO: Implement signout button to call handleSignOut in auth.tsx
+
 	return (
 		<StyledHeader>
 			<LeftArea>

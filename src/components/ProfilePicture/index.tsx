@@ -1,11 +1,6 @@
-import PropTypes from 'prop-types';
 import { PhotoContainer } from './styles';
 
-interface IProfilePicture {
-	photoUrl?: string;
-	profileUrl?: string;
-	size?: number;
-}
+import { IProfilePicture } from '../../types/types';
 
 const ProfilePicture = ({
 	photoUrl,

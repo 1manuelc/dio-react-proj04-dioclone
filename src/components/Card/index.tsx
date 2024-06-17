@@ -13,26 +13,7 @@ import {
 import { LuThumbsUp } from 'react-icons/lu';
 
 import ProfilePicture from '../ProfilePicture';
-
-interface IAuthor {
-	name: string;
-	profileUrl?: string;
-	profilePhotoUrl?: string;
-}
-
-interface IPost {
-	cover?: string;
-	title: string;
-	description?: string;
-	postedAt: string;
-	author: IAuthor;
-	tags?: Array<string>;
-	likesCount?: number;
-}
-
-interface ICard {
-	cardInfos: IPost;
-}
+import { IPost, ICard } from '../../types/types';
 
 const Card = ({ cardInfos }: ICard) => {
 	return (

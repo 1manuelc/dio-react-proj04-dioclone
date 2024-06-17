@@ -1,16 +1,6 @@
-import PropTypes from 'prop-types';
 import { StyledContainer, InputContainer, StyledInput } from './styles';
-import { IconType } from 'react-icons';
 
-interface IInputText {
-	Icon: IconType;
-	size: number;
-	color: string;
-	placeholder: string;
-	type: string;
-	register: Function;
-	name: string;
-}
+import { IInputText } from '../../types/types';
 
 const InputText = ({
 	Icon,
