@@ -11,6 +11,8 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import schema from '../../schema';
 
+import { ISignupFormData } from '../../types/types';
+
 import { useState } from 'react';
 import {
 	createUser,
@@ -29,13 +31,7 @@ const Signup = () => {
 		resolver: yupResolver(schema),
 	});
 
-	interface IData {
-		name?: string;
-		email: string;
-		password?: string;
-	}
-
-	const onSubmit = async (data: IData) => {
+	const onSubmit = async (data: ISignupFormData): Promise<void> => {
 		const { name, email, password } = data;
 		const emailAlreadyUsed = await emailExistsOnDatabase(email);
 

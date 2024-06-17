@@ -14,6 +14,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import schema from '../../schema.js';
 import { validateLogin } from '../../services/databaseHandler.js';
 
+import { ILoginFormData } from '../../types/types.js';
+
 const Login = () => {
 	const [loginError, setLoginError] = useState('');
 	const navigate = useNavigate();
@@ -27,12 +29,7 @@ const Login = () => {
 		mode: 'onTouched',
 	});
 
-	interface IData {
-		email: string;
-		password: string;
-	}
-
-	const onSubmit = async (data: IData) => {
+	const onSubmit = async (data: ILoginFormData) => {
 		try {
 			const { email, password } = data;
 			const { canLogin, errorMessage } = await validateLogin(email, password);

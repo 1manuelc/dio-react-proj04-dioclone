@@ -1,5 +1,7 @@
 import { api } from './api';
 
+import { IUser, ILoginResponse } from '../types/types';
+
 export const emailExistsOnDatabase = async (
 	email: string
 ): Promise<boolean | undefined> => {
@@ -11,15 +13,10 @@ export const emailExistsOnDatabase = async (
 	}
 };
 
-interface IValidateLogin {
-	canLogin: boolean;
-	errorMessage: string;
-}
-
 export const validateLogin = async (
 	email: string,
 	password: string
-): Promise<IValidateLogin> => {
+): Promise<ILoginResponse> => {
 	try {
 		const response = await api.get(
 			`/users?email=${email}&password=${password}`
@@ -50,12 +47,6 @@ export const validateLogin = async (
 		};
 	}
 };
-
-interface IUser {
-	name?: string;
-	email?: string;
-	password?: string;
-}
 
 export const createUser = async ({ name, email, password }: IUser) => {
 	await api.post('/users', { name, email, password });
