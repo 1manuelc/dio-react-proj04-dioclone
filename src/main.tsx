@@ -7,6 +7,7 @@ import Login from './pages/Login/';
 import Signup from './pages/Signup/';
 import UserHome from './pages/UserHome/';
 import { GlobalStyle } from './global';
+import { AuthContextProvider } from './context/auth';
 
 const router = createBrowserRouter([
 	{
@@ -29,7 +30,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<GlobalStyle />
-		<RouterProvider router={router} />
+		<AuthContextProvider>
+			<GlobalStyle />
+			<RouterProvider router={router} />
+		</AuthContextProvider>
 	</React.StrictMode>
 );

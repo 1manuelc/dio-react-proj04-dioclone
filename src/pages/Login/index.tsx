@@ -7,18 +7,19 @@ import InputText from '../../components/InputText/index.js';
 import { Column, Main, Row, Subtitle, Title } from '../Home/styles.js';
 import { Actions, StyledForm } from './styles.js';
 
-import { useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../../schema.js';
-import { validateLogin } from '../../services/databaseHandler.js';
+import schema from '../../schemas/loginSchema';
 
+import { AuthContext } from '../../context/auth.js';
 import { ILoginFormData } from '../../types/types.js';
 
 const Login = () => {
 	const [loginError, setLoginError] = useState('');
 	const navigate = useNavigate();
+	const { handleLogin } = useContext(AuthContext);
 
 	const {
 		register,
@@ -29,15 +30,15 @@ const Login = () => {
 		mode: 'onTouched',
 	});
 
-	const onSubmit = async (data: ILoginFormData) => {
-		try {
-			const { email, password } = data;
-			const { canLogin, errorMessage } = await validateLogin(email, password);
+	const handleErrorMessage = (message: string): void => {
+		setLoginError(`${message}`);
+		setTimeout(() => setLoginError(''), 4000);
+	};
 
-			if (!canLogin) {
-				setLoginError(errorMessage);
-				setTimeout(() => setLoginError(''), 4000);
-			} else navigate('/userhome');
+	const onSubmit = async (data: ILoginFormData): Promise<void> => {
+		try {
+			const { canLogin, errorMessage } = await handleLogin(data);
+			canLogin ? navigate('/userhome') : handleErrorMessage(errorMessage!);
 		} catch (error) {
 			console.error(error);
 		}

@@ -1,13 +1,14 @@
 export interface IUser {
+	id?: number;
 	name: string;
 	email: string;
 	password: string;
 }
 
 export interface ISignupFormData {
-    name: string;
-    email: string;
-    password: string;
+	name: string;
+	email: string;
+	password: string;
 }
 
 export interface ILoginFormData {
@@ -17,10 +18,16 @@ export interface ILoginFormData {
 
 export interface ILoginResponse {
 	canLogin: boolean;
-	errorMessage: string;
+	errorMessage?: string;
+}
+
+export interface ISignupResponse {
+	success: boolean;
+	errorMessage?: string;
 }
 
 export interface IUserInRank {
+	id?: number;
 	name: string;
 	progressPercent: number;
 	profilePhotoUrl?: string;

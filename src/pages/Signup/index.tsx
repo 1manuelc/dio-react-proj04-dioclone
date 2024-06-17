@@ -9,18 +9,16 @@ import { Actions, StyledForm } from '../Login/styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import schema from '../../schema';
+import schema from '../../schemas/signupSchema';
 
 import { ISignupFormData } from '../../types/types';
 
-import { useState } from 'react';
-import {
-	createUser,
-	emailExistsOnDatabase,
-} from '../../services/databaseHandler';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/auth';
 
 const Signup = () => {
 	const [signupError, setSignupError] = useState('');
+	const { handleSignup } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	const {
@@ -32,18 +30,8 @@ const Signup = () => {
 	});
 
 	const onSubmit = async (data: ISignupFormData): Promise<void> => {
-		const { name, email, password } = data;
-		const emailAlreadyUsed = await emailExistsOnDatabase(email);
-
-		if (emailAlreadyUsed) {
-			setSignupError('Email já cadastrado');
-			setTimeout(() => {
-				setSignupError('');
-			}, 4000);
-		} else {
-			createUser({ name, email, password });
-			navigate('/userhome');
-		}
+		const { success, errorMessage } = await handleSignup(data);
+		success ? navigate('/userhome') : setSignupError(`${errorMessage}`);
 	};
 
 	return (
