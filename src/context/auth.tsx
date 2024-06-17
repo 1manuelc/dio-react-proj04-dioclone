@@ -51,11 +51,7 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 						errorMessage: 'Senha incorreta',
 					};
 				} else {
-					setUser({
-						name: user.name,
-						email: email,
-						password: password,
-					});
+					setUser(users[0]);
 					return { canLogin: true };
 				}
 			}
@@ -81,7 +77,7 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 				return { success: false, errorMessage: 'Email já cadastrado' };
 			else {
 				await api.post('/users', { name, email, password });
-				setUser({ name, email, password });
+				setUser(response.data[0]);
 				return { success: true, errorMessage: '' };
 			}
 		} catch (error) {
