@@ -6,7 +6,7 @@ import {
 } from './styles';
 import ProfilePicture from '../ProfilePicture';
 
-import { IUserInRank } from '../../types/types';
+import { IUserInRank } from '../../interfaces/types';
 
 const UserInRank = ({
 	name,

@@ -13,7 +13,7 @@ import {
 import { LuThumbsUp } from 'react-icons/lu';
 
 import ProfilePicture from '../ProfilePicture';
-import { IPost, ICard } from '../../types/types';
+import { IPost, ICard } from '../../interfaces/types';
 
 const Card = ({ cardInfos }: ICard) => {
 	return (

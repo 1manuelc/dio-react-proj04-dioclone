@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import schema from '../../schemas/signupSchema';
 
-import { ISignupFormData } from '../../types/types';
+import { ISignupFormData } from '../../interfaces/types';
 
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/auth';

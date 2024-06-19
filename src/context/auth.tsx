@@ -1,26 +1,14 @@
-import { createContext, useState, ReactNode, FC } from 'react';
+import { FC, createContext, useState } from 'react';
 import { api } from '../services/api';
 import {
+	IAuthContext,
+	IAuthContextProvProps,
 	ILoginFormData,
 	ILoginResponse,
 	ISignupFormData,
 	ISignupResponse,
 	IUser,
-} from '../types/types';
-
-interface IAuthContext {
-	user: IUser;
-	handleLogin: ({ email, password }: ILoginFormData) => Promise<ILoginResponse>;
-	handleSignup: ({
-		name,
-		email,
-		password,
-	}: ISignupFormData) => Promise<ISignupResponse>;
-}
-
-interface IAuthContextProvProps {
-	children: ReactNode;
-}
+} from '../interfaces/types';
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 

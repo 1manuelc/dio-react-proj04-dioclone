@@ -1,6 +1,6 @@
 import { StyledButton } from './styles';
 
-import { IButton } from '../../types/types';
+import { IButton } from '../../interfaces/types';
 
 const Button = ({ variant, text, itFillWidth = false, onClickFn }: IButton) => {
 	let space = itFillWidth ? 100 : 0;

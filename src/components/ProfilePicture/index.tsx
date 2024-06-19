@@ -1,6 +1,6 @@
 import { PhotoContainer } from './styles';
 
-import { IProfilePicture } from '../../types/types';
+import { IProfilePicture } from '../../interfaces/types';
 
 const ProfilePicture = ({
 	photoUrl,

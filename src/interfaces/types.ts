@@ -91,3 +91,17 @@ export interface IProfilePicture {
 	profileUrl?: string;
 	size?: number;
 }
+
+export interface IAuthContext {
+	user: IUser;
+	handleLogin: ({ email, password }: ILoginFormData) => Promise<ILoginResponse>;
+	handleSignup: ({
+		name,
+		email,
+		password,
+	}: ISignupFormData) => Promise<ISignupResponse>;
+}
+
+export interface IAuthContextProvProps {
+	children: React.ReactNode;
+}

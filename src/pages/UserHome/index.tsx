@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import { Main, Column, Row } from '../Home/styles';
 import { RankingColumn } from './styles';
 import UserInRank from '../../components/UserInRank';
-import { IRankingList, IPostList } from '../../types/types';
+import { IRankingList, IPostList } from '../../interfaces/types';
 
 const loggedUser = {
 	name: 'Manuel Carlos',

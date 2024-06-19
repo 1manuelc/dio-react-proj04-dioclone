@@ -1,6 +1,6 @@
 import { StyledContainer, InputContainer, StyledInput } from './styles';
 
-import { IInputText } from '../../types/types';
+import { IInputText } from '../../interfaces/types';
 
 const InputText = ({
 	Icon,

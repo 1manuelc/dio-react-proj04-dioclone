@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import schema from '../../schemas/loginSchema';
 
 import { AuthContext } from '../../context/auth.js';
-import { ILoginFormData } from '../../types/types.js';
+import { ILoginFormData } from '../../interfaces/types.js';
 
 const Login = () => {
 	const [loginError, setLoginError] = useState('');
