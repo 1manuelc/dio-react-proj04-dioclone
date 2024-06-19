@@ -1,20 +1,14 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { StyledHeader, LeftArea, RightArea } from './styles';
 import Button from '../Button';
 import SearchBar from '../SearchBar';
 import DioLogo from '../DioLogo';
 import ProfilePicture from '../ProfilePicture';
-import { LuChevronDown } from 'react-icons/lu';
+import { LuLogOut } from 'react-icons/lu';
+import useAuth from '../../hooks/useAuth';
 
-interface IHeader {
-	isAuthenticated?: boolean;
-	profilePhotoUrl?: string;
-}
-
-const Header = ({ isAuthenticated = false, profilePhotoUrl }: IHeader) => {
-	// TODO: Pass user through context API to show authenticated header version or not
-	// TODO: Implement signout button to call handleSignOut in auth.tsx
+const Header = () => {
+	const { user, handleSignOut } = useAuth();
 
 	return (
 		<StyledHeader>
@@ -22,23 +16,22 @@ const Header = ({ isAuthenticated = false, profilePhotoUrl }: IHeader) => {
 				<Link to='/'>
 					<DioLogo />
 				</Link>
-				{isAuthenticated ? (
+				{window.innerWidth >= 1024 && user ? (
 					<>
-						{window.innerWidth >= 1024 ? (
-							<>
-								<SearchBar />
-								<Button text='Live Code' />
-								<Button text='Global' />
-							</>
-						) : undefined}
+						<SearchBar />
+						<Link to='#'>Live Code</Link>
+						<Link to='#'>Global</Link>
 					</>
 				) : undefined}
 			</LeftArea>
 			<RightArea>
-				{isAuthenticated ? (
+				{user ? (
 					<>
-						<ProfilePicture photoUrl={profilePhotoUrl} size={36} />
-						<LuChevronDown color='#fff' size='24' />
+						<h4>{user.name}</h4>
+						<ProfilePicture photoUrl={user.photoSrc} size={36} />
+						<Link to='/' onClick={handleSignOut}>
+							<LuLogOut color='#fff' size='24' />
+						</Link>
 					</>
 				) : (
 					<>

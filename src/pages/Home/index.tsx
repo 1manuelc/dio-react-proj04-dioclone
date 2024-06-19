@@ -9,7 +9,7 @@ import heroImgPath from '../../assets/heroimg.png';
 function Home() {
 	return (
 		<>
-			<Header isAuthenticated={false} />
+			<Header />
 			<Main>
 				<Row>
 					<Column>

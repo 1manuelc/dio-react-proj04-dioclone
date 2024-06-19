@@ -21,6 +21,10 @@ export const LeftArea = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 2.4rem;
+
+	& a {
+		color: #fff;
+	}
 `;
 
 export const RightArea = styled.div`
@@ -30,4 +34,6 @@ export const RightArea = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+
+	color: #fff;
 `;

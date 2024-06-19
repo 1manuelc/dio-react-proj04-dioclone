@@ -8,18 +8,18 @@ import { Column, Main, Row, Subtitle, Title } from '../Home/styles.js';
 import { Actions, StyledForm } from './styles.js';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import schema from '../../schemas/loginSchema';
 
-import { AuthContext } from '../../context/auth.js';
+import useAuth from '../../hooks/useAuth.js';
 import { ILoginFormData } from '../../interfaces/types.js';
 
 const Login = () => {
 	const [loginError, setLoginError] = useState('');
+	const { handleLogin } = useAuth();
 	const navigate = useNavigate();
-	const { handleLogin } = useContext(AuthContext);
 
 	const {
 		register,

@@ -11,14 +11,14 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import schema from '../../schemas/signupSchema';
 
-import { ISignupFormData } from '../../interfaces/types';
+import { ISignUpFormData } from '../../interfaces/types';
 
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../context/auth';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 const Signup = () => {
 	const [signupError, setSignupError] = useState('');
-	const { handleSignup } = useContext(AuthContext);
+	const { handleSignUp } = useAuth();
 	const navigate = useNavigate();
 
 	const {
@@ -29,8 +29,8 @@ const Signup = () => {
 		resolver: yupResolver(schema),
 	});
 
-	const onSubmit = async (data: ISignupFormData): Promise<void> => {
-		const { success, errorMessage } = await handleSignup(data);
+	const onSubmit = async (data: ISignUpFormData): Promise<void> => {
+		const { success, errorMessage } = await handleSignUp(data);
 		success ? navigate('/userhome') : setSignupError(`${errorMessage}`);
 	};
 
