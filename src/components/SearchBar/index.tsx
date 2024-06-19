@@ -5,8 +5,8 @@ const SearchBar = () => {
 	return (
 		<>
 			<StylizedBar>
-				<LuSearch color='#fff' />
 				<input type='text' placeholder='Buscar' />
+				<LuSearch color='#fff' />
 			</StylizedBar>
 		</>
 	);
