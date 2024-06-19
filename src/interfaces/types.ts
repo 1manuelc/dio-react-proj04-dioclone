@@ -5,9 +5,10 @@ export interface IUser {
 	name: string;
 	email: string;
 	password: string;
+	photoSrc?: string;
 }
 
-export interface ISignupFormData {
+export interface ISignUpFormData {
 	name: string;
 	email: string;
 	password: string;
@@ -93,13 +94,14 @@ export interface IProfilePicture {
 }
 
 export interface IAuthContext {
-	user: IUser;
+	user: IUser | null;
 	handleLogin: ({ email, password }: ILoginFormData) => Promise<ILoginResponse>;
-	handleSignup: ({
+	handleSignUp: ({
 		name,
 		email,
 		password,
-	}: ISignupFormData) => Promise<ISignupResponse>;
+	}: ISignUpFormData) => Promise<ISignupResponse>;
+	handleSignOut: () => void;
 }
 
 export interface IAuthContextProvProps {

@@ -14,9 +14,11 @@
     "dist"
   ],
   "include": [
+    "./src/",
     "./src/*",
     "./test",
     "./*",
-    "./config"
+    "./config",
+    "src/hooks"
   ]
 }
