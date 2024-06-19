@@ -1,11 +1,14 @@
-import { FC, createContext, useState } from 'react';
+import {
+	FC,
+	createContext, useState
+} from 'react';
 import { api } from '../services/api';
 import {
 	IAuthContext,
 	IAuthContextProvProps,
 	ILoginFormData,
 	ILoginResponse,
-	ISignupFormData,
+	ISignUpFormData,
 	ISignupResponse,
 	IUser,
 } from '../interfaces/types';
@@ -15,7 +18,7 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 	children,
 }) => {
-	const [user, setUser] = useState<IUser>({} as IUser);
+	const [user, setUser] = useState<IUser | null>(null);
 
 	const handleLogin = async ({
 		email,
@@ -23,8 +26,8 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 	}: ILoginFormData): Promise<ILoginResponse> => {
 		try {
 			const response = await api.get(`/users?email=${email}`);
-			const users = response.data;
-			const emailExists = users.length === 1;
+			const user = response.data[0];
+			const emailExists = response.data.length === 1;
 
 			if (!emailExists) {
 				return {
@@ -32,14 +35,13 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 					errorMessage: 'Não existe uma conta associada a esse email',
 				};
 			} else {
-				const user = users[0];
 				if (password !== user.password) {
 					return {
 						canLogin: false,
 						errorMessage: 'Senha incorreta',
 					};
 				} else {
-					setUser(users[0]);
+					setUser(user);
 					return { canLogin: true };
 				}
 			}
@@ -52,11 +54,11 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 		}
 	};
 
-	const handleSignup = async ({
+	const handleSignUp = async ({
 		name,
 		email,
 		password,
-	}: ISignupFormData): Promise<ISignupResponse> => {
+	}: ISignUpFormData): Promise<ISignupResponse> => {
 		try {
 			const response = await api.get(`/users?email=${email}`);
 			const emailAlreadyUsed = response.data.length === 1;
@@ -65,7 +67,7 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 				return { success: false, errorMessage: 'Email já cadastrado' };
 			else {
 				await api.post('/users', { name, email, password });
-				setUser(response.data[0]);
+				setUser({ name, email, password });
 				return { success: true, errorMessage: '' };
 			}
 		} catch (error) {
@@ -77,10 +79,14 @@ export const AuthContextProvider: FC<IAuthContextProvProps> = ({
 		}
 	};
 
-	// TODO: implement handleSignOut function
+	const handleSignOut = () => {
+		setUser(null);
+	};
 
 	return (
-		<AuthContext.Provider value={{ user, handleLogin, handleSignup }}>
+		<AuthContext.Provider
+			value={{ user, handleLogin, handleSignUp, handleSignOut }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);
